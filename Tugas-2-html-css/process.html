@@ -1,19 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>process</title>
-    <style>
-      * {
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Process</title>
+</head>
+<style>
+  body {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
-      }
-      body {
         background-image: url(logo/pattern.jpg);
       }
-      nav {
+  nav {
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -27,8 +26,7 @@
         display: flex;
         list-style: none;
         font-weight: bold;
-        font-size: 8px;
-        padding: 10px;
+        font-size: 16px;
         gap: 10px;
       }
       nav ul li {
@@ -41,34 +39,40 @@
       nav img {
         width: 100px;
       }
-      h2 {
-        font-size: 28px;
+      section{
         margin-top: 100px;
-      }
-      p,
-      a {
-        font-size: 20px;
-      }
-      main {
         text-align: center;
       }
-    </style>
-  </head>
-  <body>
-    <header>
-      <nav>
-        <img class="logo" src="logo/logo.png" alt="logo" />
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="form.html">Register</a></li>
-          <li><a href="article.html">Article</a></li>
-        </ul>
-      </nav>
-    </header>
-    <main>
-      <h2>Registrasi Anda Sedang di Proses</h2>
-      <p>Jika ingin kembali ke halaman awal silahkan klil link di bawah ini</p>
-      <a href="index.html">Kembali ke halaman awal</a>
-    </main>
-  </body>
+      footer {
+        text-align: center;
+        background-color: gray;
+        color: white;
+        border-radius: 10px;
+        padding: 1px;
+        margin-top: 400px;
+      }
+</style>
+<body>
+  <header>
+    <nav>
+      <img class="logo" src="logo/logo.png" alt="logo" />
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="form.html">Register</a></li>
+        <li><a href="article.html">Article</a></li>
+      </ul>
+    </nav>
+  </header>
+  <section>
+    <h2>Registrasi Anda Sedang di Proses</h2>
+    <p>Jika ingin kembali ke halaman awal silahkan klil link di bawah ini</p>
+    <a href="index.html">Kembali ke halaman awal</a>
+  </main>
+  </section>
+  <footer><p>copyright@ 2024 Bootcamp Paradaya |Laravel Vue</p></footer>
+  
+</body>
+</html>
+  
+</body>
 </html>
