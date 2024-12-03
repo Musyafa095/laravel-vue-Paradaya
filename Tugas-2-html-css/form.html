@@ -39,7 +39,6 @@
     nav img {
       width: 100px;
     }
-
     h1 {
       text-align: center;
       text-shadow: 2px 0 2px #ccc;
@@ -59,13 +58,7 @@
     [type="radio"],
     select,
     textarea {
-      margin-left: 30px;
-    }
-    footer {
-      text-align: center;
-      padding: 3px;
-      background-color: gray;
-      color: white;
+      margin-left: 14px;
     }
     submit a {
       margin-left: 30px;
@@ -89,63 +82,74 @@
         </ul>
       </nav>
     </header>
-    <h1>Registrasi Akun Baru!</h1>
-    <p>Isilah Form Dibawah Ini</p>
-    <form action="process.html" method="post">
-      <label for="name">First Name:</label>
-      <br />
-      <input type="text" id="name" name="name" required />
-      <br />
-      <label for="lname">Last Name:</label>
-      <br />
-      <input type="text" id="lname" name="lname" required />
-      <br />
-      <label for="Gender">Gender:</label>
-      <br />
-      <input type="radio" id="male" name="Gender" value="male" /> male
-      <input type="radio" id="female" name="Gender" value="female" /> female
-      <input type="radio" id="other" name="Gender" value="other" /> other
-      <br />
-      <label for="Nationality">Nationality:</label>
-      <br />
-      <select name="Nationality" id="Nationality">
-        <option value="Indonesia">Indonesia</option>
-        <option value="Malaysia">Malaysia</option>
-        <option value="Singapura">Singapura</option>
-      </select>
-      <br />
-      <label for="Belajar">Sedang Fokus Belajar :</label>
-      <br />
-      <select name="Belajar" id="Belajar">
-        <option value="React js">React js</option>
-        <option value="Laravel">Laravel</option>
-        <option value="Vue js">Vue js</option>
-      </select>
-      <br />
-      <label for="bahasa">Language Spoken:</label>
-      <br />
-      <input
-        type="checkbox"
-        id="bahasa"
-        name="bahasa"
-        value="Indonesia"
-      />Indonesia
-      <input type="checkbox" id="bahasa" name="bahasa" value="Inggris" />Inggris
-      <input type="checkbox" id="bahasa" name="bahasa" value="Jepang" />Jepang
-      <input type="checkbox" id="bahasa" name="bahasa" value="Spanyol" />Spanyol
-      <br />
-      <label for="Deskripsi">Deskripsi Diri:</label>
-      <br />
-      <textarea
-        name="Deskripsi"
-        id="Deskripsi"
-        cols="60"
-        rows="6"
-        placeholder="Deskripsidiri saya"
-      ></textarea>
-      <br />
-      <submit><a href="process.html">Submit</a></submit>
-    </form>
-    <footer><p>copyright@ 2024 Bootcamp Paradaya |Laravel Vue</p></footer>
+    <main>
+      <h1>Registrasi Akun Baru!</h1>
+      <p>Isilah Form Dibawah Ini</p>
+      <form action="process.html" method="post">
+        <label for="name">First Name:</label>
+        <br />
+        <input type="text" id="name" name="name" required />
+        <br />
+        <label for="lname">Last Name:</label>
+        <br />
+        <input type="text" id="lname" name="lname" required />
+        <br />
+        <label for="Gender">Gender:</label>
+        <br />
+        <input type="radio" id="male" name="Gender" value="male" /> male
+        <input type="radio" id="female" name="Gender" value="female" /> female
+        <input type="radio" id="other" name="Gender" value="other" /> other
+        <br />
+        <label for="Nationality">Nationality:</label>
+        <br />
+        <select name="Nationality" id="Nationality">
+          <option value="Indonesia">Indonesia</option>
+          <option value="Malaysia">Malaysia</option>
+          <option value="Singapura">Singapura</option>
+        </select>
+        <br />
+        <label for="Belajar">Sedang Fokus Belajar :</label>
+        <br />
+        <select name="Belajar" id="Belajar">
+          <option value="React js">React js</option>
+          <option value="Laravel">Laravel</option>
+          <option value="Vue js">Vue js</option>
+        </select>
+        <br />
+        <label for="bahasa">Language Spoken:</label>
+        <br />
+        <input
+          type="checkbox"
+          id="bahasa"
+          name="bahasa"
+          value="Indonesia"
+        />Indonesia
+        <input
+          type="checkbox"
+          id="bahasa"
+          name="bahasa"
+          value="Inggris"
+        />Inggris
+        <input type="checkbox" id="bahasa" name="bahasa" value="Jepang" />Jepang
+        <input
+          type="checkbox"
+          id="bahasa"
+          name="bahasa"
+          value="Spanyol"
+        />Spanyol
+        <br />
+        <label for="Deskripsi">Deskripsi Diri:</label>
+        <br />
+        <textarea
+          name="Deskripsi"
+          id="Deskripsi"
+          cols="60"
+          rows="6"
+          placeholder="Deskripsidiri saya"
+        ></textarea>
+        <br />
+        <submit><a href="process.html">Submit</a></submit>
+      </form>
+    </main>
   </body>
 </html>
