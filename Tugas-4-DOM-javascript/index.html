@@ -43,8 +43,8 @@
   <body>
     <header>
       <h3>List postingan</h3>
-      <form id="formSearch">
-        <input type="text" placeholder="inputSearch" id="inputsearch" />
+      <form id="form-search">
+        <input type="text" placeholder="inputSearch" id="input-search" />
         <input type="submit" value="Cari" />
       </form>
     </header>
@@ -111,12 +111,12 @@
         return newArray;
       }
 
-      var form = document.getElementById("formSearch");
+      var form = document.getElementById("form-search");
       form.addEventListener("submit", function (event) {
         event.preventDefault();
-        var inputPencarian = document.getElementById("inputsearch").value;
+        var inputPencarian = document.getElementById("input-search").value;
         var filter = filterPencarian(inputPencarian);
-        tampilPost(filter);
+        filterPencarian(filter);
       });
     </script>
   </body>
