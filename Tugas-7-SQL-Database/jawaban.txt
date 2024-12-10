@@ -21,7 +21,6 @@ INSERT INTO items (name, description, price, stock, category_id) VALUES ("Sumsan
 -SELECT * FROM items WHERE name LIKE '%uniklo%';
 
 c.Menampilkan data items join dengan kategori
--SELECT items.name, items.description, items.price, items.stock, items.category_id, categories.name FROM items JOIN categories on items.category_id = categories.name;
 -SELECT items.name, items.description, items.price, items.stock, items.category_id, categories.name AS kategori FROM items JOIN categories ON items.category_id = categories.id;
 
 5. Soal 5 Mengubah Data dari Database
