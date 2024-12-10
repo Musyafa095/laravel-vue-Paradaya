@@ -15,7 +15,7 @@ class Ape extends Animal {
         $this->legs = 2;
     }
     public function yell() {
-        echo "Yell: Auooo<br>";
+        echo "Yell: Auooo:)<br>";
     }
     public function display() {
         parent::display();
