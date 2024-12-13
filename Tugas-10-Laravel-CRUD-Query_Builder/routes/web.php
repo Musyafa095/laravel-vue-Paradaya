@@ -14,3 +14,4 @@ Route ::get('/master', function(){
 });
 
 Route ::get('/data-table', [IndexController::class, 'table']);
+?>
