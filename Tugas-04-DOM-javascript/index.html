@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Latihan DOM</title>
+  </head>
+  <style>
+    form,
+    h3 {
+      text-align: center;
+    }
+    .container {
+      display: grid;
+      grid-template-columns: auto auto auto;
+      gap: 20px;
+      padding: 20px;
+      margin-left: 360px;
+    }
+    .card {
+      border: 2px solid gray;
+      border-radius: 12px;
+      padding: 20px;
+    }
+    .card-title {
+      text-align: center;
+      font-weight: bold;
+      font-size: 20px;
+    }
+    .card-text {
+      text-align: center;
+      font-size: 16px;
+    }
+    footer {
+      text-align: center;
+      background-color: #ccc;
+      padding: 8px;
+      margin: 0;
+      box-sizing: border-box;
+    }
+  </style>
+  <body>
+    <header>
+      <h3>List postingan</h3>
+      <form id="form-search">
+        <input type="text" placeholder="inputSearch" id="input-search" />
+        <input type="submit" value="Cari" />
+      </form>
+    </header>
+    <main>
+      <div id="itemList"></div>
+    </main>
+    <footer><p>copyright@ 2024 Bootcamp Paradaya |Laravel Vue</p></footer>
+    <script>
+      var items = [
+        [
+          "001",
+          "Keyboard Logitek",
+          60000,
+          "Keyboard yang mantap untuk kantoran",
+          "logitek.jpg",
+        ],
+        [
+          "002",
+          "Keyboard MSI",
+          300000,
+          "Keyboard gaming MSI mekanik",
+          "msi.jpg",
+        ],
+        [
+          "003",
+          "Mouse Genius",
+          50000,
+          "Mouse Genius biar lebih pinter",
+          "genius.jpeg",
+        ],
+        ["004", "Mouse Jerry", 30000, "Mouse yang disukai kucing", "jerry.jpg"],
+      ];
+      var postList = document.getElementById("itemList");
+
+      function tampilPost(array) {
+        var tampung = "";
+        for (var a = 0; a < items.length; a++) {
+          tampung += `
+              <div class="container">
+              <div class="card">
+                  <img src="image/${array[a][4]}"
+                   alt="" height="300" width="300">
+              <h5 class="card-title" id="itemName">${array[a][1]}</h5>
+              <p class="card-text" id="itemDesc">${array[a][2]}</p>
+              <p class="card-text">${array[a][3]}</p>
+              </div>
+               </div>`;
+        }
+        postList.innerHTML = tampung;
+      }
+      tampilPost(items);
+      function filterPencarian(inputKeyword) {
+        var newArray = [];
+        for (var j = 0; j < items.length; j++) {
+          var postArray = items[j];
+          var namaPost = postArray[1];
+          var match = namaPost
+            .toLowerCase()
+            .includes(inputKeyword.toLowerCase());
+          if (match == true) {
+            newArray.push(postArray);
+          }
+        }
+        return newArray;
+      }
+
+      var form = document.getElementById("form-search");
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        var inputPencarian = document.getElementById("input-search").value;
+        var filter = filterPencarian(inputPencarian);
+        filterPencarian(filter);
+      });
+    </script>
+  </body>
+</html>
