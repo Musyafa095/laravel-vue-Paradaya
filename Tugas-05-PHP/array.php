@@ -55,7 +55,15 @@
             "Aliases" => "El",
             "Status" => "Alive"]
            ];
-           print_r($caracter);
+       foreach ($caracter as $hasil){
+        echo "Nama : $hasil[Name]<br>";
+        echo "Umur : $hasil[Age]<br>";
+        echo "Panggilan : $hasil[Aliases]<br>";
+        echo "Status : $hasil[Status]<br>";
+        echo "<br>";
+       }
+          
+            
 
       
 

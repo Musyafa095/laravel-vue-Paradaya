@@ -13,18 +13,21 @@ class Animal {
   public $legs;
   public $cold_blooded;
 
-  public function __construct($name) {
-      $this->name = $name;
-      $this->legs = 4;
-      $this->cold_blooded = "Nooo";
-  }
-
-  public function display() {
-      echo "Name: " .$this->name."<br>";
-      echo "Legs: ".$this->legs."<br>";
-      echo "Cold blooded: " . $this->cold_blooded . "<br>";
-  }
+public function __construct($name){
+  $this->name = $name;
+  $this->legs = 4;
+  $this->cold_blooded = "Noo";
 }
+
+public function display(){
+  echo "Name :". $this->name. "<br>";
+  echo "Legs :". $this->legs. "<br>";
+  echo "Cold Blooded :". $this->cold_blooded . "<br>";
+  echo "<br>";
+}
+
+}
+
 
 
 ?>
