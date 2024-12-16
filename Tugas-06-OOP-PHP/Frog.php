@@ -10,8 +10,8 @@
 require_once 'Animal.php';
 
 class Frog extends Animal {
-    public function jump() {
-        echo "Jump: Hop-Hop;)<br>";
+    public function  jump(){
+      echo "Hop hop hop <br>";
     }
     public function display() {
         parent::display();
