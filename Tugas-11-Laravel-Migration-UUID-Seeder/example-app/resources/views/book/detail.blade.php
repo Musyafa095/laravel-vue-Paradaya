@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-Halaman Detail Buku
+Halaman  Detail Buku
 @endsection
 @section('content')
 <h1>{{$book->title}}</h1>

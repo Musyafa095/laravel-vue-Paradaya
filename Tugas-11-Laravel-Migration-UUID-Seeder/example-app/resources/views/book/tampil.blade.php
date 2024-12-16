@@ -23,9 +23,9 @@ Halaman Tampil Buku
         <form action="/book/{{$item->id}}" method="POST">
           @csrf
            @method("DELETE")
-        <a href="/book/{{$item->id}}"  class="btn btn-info btn-sm">Detail Buku</a>
-        <a href="/book/{{$item->id}}/edit" class="btn btn-warning btn-sm">Edit Buku</a>
-        <button type="submit" class="btn btn-danger btn-sm">Delete Buku</button>
+        <a href="/book/{{$item->id}}"  class="btn btn-info btn-sm">Detail Book</a>
+        <a href="/book/{{$item->id}}/edit" class="btn btn-warning btn-sm">Edit Book</a>
+        <button type="submit" class="btn btn-danger btn-sm">Delete Book</button>
         </form>
       </td>
     </tr>
