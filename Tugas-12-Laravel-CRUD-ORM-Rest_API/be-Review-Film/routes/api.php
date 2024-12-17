@@ -1,5 +1,6 @@
 <?php
 
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\CastController;
@@ -16,10 +17,8 @@ use App\Http\Controllers\API\GenreController;
 |
 */
 
-
-
-// CRUD API
-Route::prefix('v1')->group(function () {
+// CRUD-ORM-API
+Route::prefix('v1')->group(function() {
     Route::apiResource('/cast', CastController::class);
     Route::apiResource('/genre', GenreController::class);
     });

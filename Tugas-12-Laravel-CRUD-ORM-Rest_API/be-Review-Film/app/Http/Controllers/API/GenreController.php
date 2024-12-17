@@ -8,11 +8,12 @@ use App\Http\Controllers\Controller;
 
 class GenreController extends Controller
 {
-  public function index()
+   public function index()
     {
+       
         $genres = genres::all();
         return response()->json([
-            'message' => 'tampil data berhasil',
+            'message' => 'menampilkan data berhasil data berhasil',
             'data' => $genres
         ]);
     }
@@ -20,22 +21,23 @@ class GenreController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|min:2',
+             'name' => 'required|min:2',
         ]);
       genres::create([
-            'name' => $request->input('name'),
+             'name' => $request->input('name'),
         ]);
-        return response()->json(['message' => 'Tambah Genre berhasil'], 201);
+        return response()->json(['message' => 'menambahkan Genre berhasil'], 201);
 
     }
 
     public function show($id)
 
     {
+       
         $genre = genres::findOrFail($id);
         
         return response()->json([
-            'message' => 'Detail Data Genre',
+            'message' => 'Detail untuk data Genre',
             'data' => $genre
         ]);
     }
@@ -47,13 +49,13 @@ class GenreController extends Controller
             'name' => 'required|string',
         ]);
         $genre->update($request->all());
-        return response()->json(['message' => 'Update Genre telah berhasil']);
+        return response()->json(['message' => 'Update data genre telah berhasil']);
     }
 
     public function destroy($id)
     {
         $genre = genres::find($id);
         $genre->delete();
-        return response()->json(['message' => 'berhasil Menghapus Genre']);
+        return response()->json(['message' => 'berhasil Menghapus data genre']);
     }
 }

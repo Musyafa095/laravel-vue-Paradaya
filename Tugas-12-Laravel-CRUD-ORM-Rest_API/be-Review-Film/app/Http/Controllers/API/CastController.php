@@ -7,12 +7,13 @@ use App\Http\Controllers\Controller;
 use App\Models\casts;
 class CastController extends Controller
 {
-        public function index()
+      
+    public function index()
         {
             $casts = casts::all();
-    
+
             return response()->json([
-                'message' => 'tampil data berhasil',
+                'message' => ' menampilkan data berhasil',
                 'data' => $casts
             ]);
         }
@@ -27,12 +28,12 @@ class CastController extends Controller
            ]);
            
             casts::create([
-                'name' => $request->input('name'),
+                'name' => $request->input ('name'),
                'bio' => $request->input ('bio'),
-               'age' => $request->input('age'),
+               'age' => $request->input ('age'),
             ]);
             return response()->json([
-                'message' => 'Tambah Cast berhasil',
+                'message' => 'menambahkan Cast berhasil',
             ], 201);
         }
     
@@ -41,7 +42,7 @@ class CastController extends Controller
         {
             $cast = casts::find($id);
             return response()->json([
-                'message' => 'Detail Data Cast',
+                'message' => 'Detail untuk data Cast',
                 'data' => $cast
             ]);
         }
@@ -59,7 +60,7 @@ class CastController extends Controller
             $cast->update($request->all());
     
             return response()->json([
-                'message' => 'Update Cast berhasil',
+                'message' => 'Update data cast berhasil',
                 'data' => $cast
             ]);
         }
@@ -71,7 +72,7 @@ class CastController extends Controller
             $cast->delete();
     
             return response()->json([
-                'message' => 'berhasil Menghapus Cast'
+                'message' => 'berhasil Menghapus data Cast'
             ]);
         }
     
