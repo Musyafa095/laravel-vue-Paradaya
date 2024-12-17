@@ -19,7 +19,7 @@ class genres extends Model
     {
         parent::boot();
         self::creating(function ($model) {
-            $model->id = (string) Str::uuid();
+            $model->id =(string) Str::uuid();
         });
     }
 }
