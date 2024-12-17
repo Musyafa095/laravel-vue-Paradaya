@@ -2,8 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\CastController;
-use App\Http\Controllers\GenreController;
+use App\Http\Controllers\API\CastController;
+use App\Http\Controllers\API\GenreController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,7 +20,7 @@ use App\Http\Controllers\GenreController;
 
 // CRUD API
 Route::prefix('v1')->group(function () {
-    Route::apiResource('cast', CastController::class);
-    Route::apiResource('genre', GenreController::class);
+    Route::apiResource('/cast', CastController::class);
+    Route::apiResource('/genre', GenreController::class);
     });
 
