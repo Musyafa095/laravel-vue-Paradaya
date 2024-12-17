@@ -16,9 +16,9 @@ use App\Http\Controllers\GenreController;
 |
 */
 
-// routes/api.php
 
 
+// CRUD API
 Route::prefix('v1')->group(function () {
     Route::apiResource('cast', CastController::class);
     Route::apiResource('genre', GenreController::class);

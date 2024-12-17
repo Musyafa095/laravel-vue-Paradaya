@@ -10,10 +10,10 @@ use Illuminate\Support\Str;
 class casts extends Model
 {
     use HasFactory, HasUuids;
-    protected $table = 'casts';
-    protected $fillable = ['name', 'bio', 'age'];
-    protected $keyType = 'string';
-    public $incrementing = false;
+    protected $table =  'casts';
+    protected $fillable =  ['name', 'bio', 'age'];
+    protected $keyType =  'string';
+    public $incrementing =  false;
 
    
 
@@ -22,7 +22,7 @@ class casts extends Model
     {
         parent::boot();
         self::creating(function ($model) {
-            $model->id =(string) Str::uuid();
+            $model->id = (string) Str::uuid();
         });
     }
 }
