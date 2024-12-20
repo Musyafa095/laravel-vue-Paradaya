@@ -9,10 +9,11 @@ class AuthController extends Controller
         return view ('register');
     }
    public function welcome (Request $request){
-       $fname = $request->input('fname');
+      $fname = $request->input('fname');
       $lname = $request->input('lname');
-     return view ('welcome', ['fname'=>$fname,'lname'=>$lname]);
+     return view ('welcome', compact('fname', 'lname'));
 } 
-}
+} 
+
 ?>
 

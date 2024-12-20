@@ -25,8 +25,9 @@ class CastController extends Controller
                'name' => 'required|string|min:2',
                'bio' => 'required|string|min:2',
                'age' => 'required|integer|min:1',
-           ]);
-           
+          ]);
+
+
             casts::create([
                 'name' => $request->input ('name'),
                'bio' => $request->input ('bio'),
@@ -34,7 +35,8 @@ class CastController extends Controller
             ]);
             return response()->json([
                 'message' => 'menambahkan Cast berhasil',
-            ], 201);
+            ], 200);
+
         }
     
 

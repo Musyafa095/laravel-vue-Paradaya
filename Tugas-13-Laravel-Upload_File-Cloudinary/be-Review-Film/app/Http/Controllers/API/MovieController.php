@@ -63,16 +63,22 @@ public function show($id)
 }
 public function update(Request $request, $id)
 {
-
     $request->validate([
        'poster' => 'image|mimes:jpg,png,jpeg,gif,svg|max:2048',
         'title' => 'required',
         'summary' => 'required',
         'year' => 'required',
         'genre_id' => 'required|exists:genres,id',
+    ], [
+        'poster.required' => 'Poster wajib diisi',
+        'title.required' => 'Judul wajib diisi',
+        'summary.required' => 'Ringkasan wajib diisi',
+        'year.required' => 'Tahun wajib diisi',
+        'genre_id.required' => 'Genre wajib diisi',
+        'genre_id.exists' => 'Genre tidak ditemukan',
     ]);
     
-      $movie = movies::find($id);
+    $movie = movies::find($id);
     if ($request->hasFile('poster')) {
         $uploadedFileUrl = cloudinary()->upload($request->file('poster')->getRealPath(), [
             'folder' => 'poster',
@@ -80,6 +86,8 @@ public function update(Request $request, $id)
         $movie -> poster = $uploadedFileUrl;
     }
    
+       
+        
     if (!$movie) {
         return response()->json([
             'message' => 'Film tidak ditemukan',
@@ -90,18 +98,18 @@ public function update(Request $request, $id)
         $movie -> year = $request->input('year');
         $movie -> genre_id = $request->input('genre_id');
   
-
         $movie->save();
         return response()->json([
-            'message' => 'mengupdate film berhasil',
+            'message' => 'mengubah data film berhasil',
         ], 200);
-    
 }
 public function destroy($id)
 {
+    movies::destroy($id);
     $movie= movies::findOrFail($id);
     $movie ->delete();
     return response()->json(['message' => 'berhasil Menghapus data film']);
+
 }
 
 

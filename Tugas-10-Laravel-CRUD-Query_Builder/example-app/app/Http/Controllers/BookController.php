@@ -7,8 +7,7 @@ use Carbon\Carbon;
 
 class BookController extends Controller
 {
-   public function create()
-   {
+   public function create() {
     return view('book.tambah');
    }
     public function store (Request $request )
