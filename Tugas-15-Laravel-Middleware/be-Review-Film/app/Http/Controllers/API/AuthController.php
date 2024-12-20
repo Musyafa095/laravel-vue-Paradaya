@@ -26,7 +26,8 @@ class AuthController extends Controller
         ]);
 
         $user = new User;
-        $roleUser = Roles::where('name', 'user')->first();
+        $RoleInput = $request->input('role');
+        $roleUser = Roles::where('name', $RoleInput)->first();
         $user->name = $request->input('name');
         $user->email = $request->input('email');
         $user->password = Hash::make($request->input('password'));
