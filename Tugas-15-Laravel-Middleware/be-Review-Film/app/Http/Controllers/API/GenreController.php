@@ -22,7 +22,10 @@ class GenreController extends Controller
     {
         $request->validate([
              'name' => 'required|min:2',
-        ], 404);
+        ],[
+            'name.required' => 'kolom name harus diisi',
+            'name.min' => 'kolom name minimal 2 karakter'
+        ]);
       genres::create([
              'name' => $request->input('name'),
         ]);
@@ -65,7 +68,7 @@ class GenreController extends Controller
     public function destroy($id)
     {
         $genre = genres::find($id);
-        $genre = delete();
+        $genre -> delete();
        return response()->json([
         'message ' => 'berhasil Menghapus data Genre'
        ]);

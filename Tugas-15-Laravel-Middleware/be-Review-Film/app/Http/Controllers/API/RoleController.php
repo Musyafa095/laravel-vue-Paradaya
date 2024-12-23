@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class RoleController extends Controller
 {
     public function __construct(){
-        $this->middleware(['auth:api', 'admin'])->except(['index', 'show']);
+        $this->middleware(['auth:api', 'admin']);
     }
 
 public function index (){
@@ -20,8 +20,13 @@ public function index (){
     ], 200);
 }
 public function store(Request $request){
-    $request->validate(['name' => 'required|string']);
-    roles::create($request->only('name'));
+    $request->validate(['name' => 'required|string'], [
+       'name.required' => 'Nama role harus diisi.',
+       'name.min' => 'Nama role minimal terdiri dari 2 karakter.',
+    ]);
+    roles::create([
+        'name' => $request->input('name'),
+    ]);
     
     return response()->json([
         'message' => 'tambah role berhasil'

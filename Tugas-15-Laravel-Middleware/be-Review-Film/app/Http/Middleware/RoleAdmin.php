@@ -18,13 +18,23 @@ class RoleAdmin
     public function handle(Request $request, Closure $next): Response
     {
          $user = auth()->user();
+         if (!$user){
+                return response()->json([
+                    'message' => 'unauthorized'
+                ], 401);
+         }
 
          $roleAdmin = roles::where('name', 'admin')->first();
-         if ($user->role_id != $roleAdmin->id) {
+         if (!$roleAdmin->id) {
              return response()->json([
-                'message' => 'user tidak memiliki akses halaman ini' 
-             ], 403);
+                'message' => 'Role admin not found, please contact your admin' 
+             ], 500);
          }
+         if ($user->role_id != $roleAdmin->id) {
+            return response()->json([
+                'message' => 'User tidak memiliki akses halaman ini'
+            ], 403); // Forbidden
+        }
         
         return $next($request);
     }
