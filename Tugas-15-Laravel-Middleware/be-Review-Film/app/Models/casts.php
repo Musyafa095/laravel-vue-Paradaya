@@ -14,7 +14,7 @@ class casts extends Model
     protected $fillable =  ['name', 'bio', 'age'];
     protected $keyType =  'string';
     public $incrementing =  false;
-
+   
    
 
 
