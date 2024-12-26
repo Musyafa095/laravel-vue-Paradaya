@@ -13,7 +13,7 @@ class CastController extends Controller
             $casts = casts::all();
 
             return response()->json([
-                'message => Berhasil menampilkan data Cast',
+                'message' => 'Berhasil menampilkan data Cast',
                 'data' => $casts
             ]);
         }

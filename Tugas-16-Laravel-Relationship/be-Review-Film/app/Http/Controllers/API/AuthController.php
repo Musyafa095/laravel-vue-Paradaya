@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Models\roles;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 
 class AuthController extends Controller
@@ -15,7 +16,7 @@ class AuthController extends Controller
     {
         $request->validate([
             'name' => 'required|min:2',
-            'email' => 'required|email|unique:users',
+            'email' => 'required|email|unique:users,id',
             'password' => 'required|min:8|confirmed',
         ],[
             'required' => 'inputan :attribute wajib diisi',
@@ -26,14 +27,14 @@ class AuthController extends Controller
         ]);
 
         $user = new User;
-        $RoleInput = $request->input('role');
-        $roleUser = Roles::where('name', $RoleInput)->first();
+        $roleUser = Roles::where('name', 'user')->first();
+      
         $user->name = $request->input('name');
         $user->email = $request->input('email');
         $user->password = Hash::make($request->input('password'));
         $user->role_id = $roleUser->id;
         $user->save();
-
+        
         return response()->json([   
             'message' => 'register berhasil',
             'user' => $user,

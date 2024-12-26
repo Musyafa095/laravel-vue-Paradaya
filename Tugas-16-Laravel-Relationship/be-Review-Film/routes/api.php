@@ -27,11 +27,8 @@ Route::prefix('v1')->group(function() {
     Route::apiResource('/movie', MovieController::class);
      //middleware roleAdmin
      Route::middleware(['auth:api', 'admin'])->group(function() {
-        Route::resource('role', RoleController::class)->except(['index', 'show']);
+        Route::resource('role', RoleController::class);
     });
-    
-    Route::get('role', [RoleController::class, 'index']);
-    Route::get('role/{id}', [RoleController::class, 'show']);
         // Auth
        Route::prefix('auth')->group(function(){
         Route::post('/register', [AuthController::class, 'register']);
