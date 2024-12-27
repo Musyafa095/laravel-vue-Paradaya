@@ -8,6 +8,9 @@ use App\Http\Controllers\API\GenreController;
 use App\Http\Controllers\API\MovieController;
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\RoleController;
+use App\Http\Controllers\API\ProfileController;
+use App\Http\Controllers\API\ReviewController;
+use App\Http\Controllers\API\CastMovieController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +28,8 @@ Route::prefix('v1')->group(function() {
     Route::apiResource('/cast', CastController::class);
     Route::apiResource('/genre', GenreController::class);
     Route::apiResource('/movie', MovieController::class);
+    Route::apiResource('/cast_movie', CastMovieController::class);
+    
      //middleware roleAdmin
      Route::middleware(['auth:api', 'admin'])->group(function() {
         Route::resource('role', RoleController::class);
@@ -36,4 +41,7 @@ Route::prefix('v1')->group(function() {
         Route::get('/me', [AuthController::class, 'currentuser'])->middleware('auth:api');
         Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:api');
         })->middleware('api');
+        //Profile
+        Route::post('/profile', [ProfileController::class, 'storeupdate'])->middleware('auth:api');
+        Route::post('/review', [ReviewController::class, 'storeupdate'])->middleware('auth:api');
     });

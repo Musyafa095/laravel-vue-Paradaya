@@ -1,5 +1,5 @@
 <?php
-
+  
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
@@ -40,7 +40,7 @@ class AuthController extends Controller
             'user' => $user,
         ], 200);
     }
-        public function login (Request $request)
+       public function login (Request $request)
 {
     $request->validate([
  
@@ -55,7 +55,11 @@ class AuthController extends Controller
             if (!$token = auth ()->attempt($credentials)){
                 return response()->json(['eror' => 'Invalid User'], 401);
             }
-            $user = User::where('email', $request->input ('email'))->first();
+          $user = User::where('email', $request->input ('email'))->with(['profile' => function($query) {
+            $query->select('user_id', 'age', 'bio');
+        }, 'roles' => function($query) {
+            $query->select('id', 'name'); 
+        }])->first();
               return response()->json ([
                 'message' => 'User berhasil register',
                 'user' => $user,

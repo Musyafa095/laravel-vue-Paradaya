@@ -7,6 +7,10 @@ use App\Http\Controllers\Controller;
 use App\Models\casts;
 class CastController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['auth:api', 'admin'])->except(['index', 'show']);
+    }
       
     public function index()
         {
