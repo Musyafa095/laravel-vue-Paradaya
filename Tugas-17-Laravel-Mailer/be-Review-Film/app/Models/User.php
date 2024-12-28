@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Tymon\JWTAuth\Contracts\JWTSubject;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -38,6 +39,27 @@ class User extends Authenticatable implements JWTSubject
     public function getJWTCustomClaims() {
         return [];
     }
+    public static function boot()
+    {
+        parent::boot();
+        static::created(function($model){
+            $model->generate_otp();
+        });
+    }
+    public function generate_otp()
+    {
+     do {
+        $randomNumber = mt_rand(100000, 999999);
+        $check = otpCode::where('otp', $randomNumber)->first();
+     }   while ($check);
+
+     $now = Carbon::now();
+
+     $otp_code = otpCode::updateOrCreate(
+         ['user_id' => $this->id],
+         ['otp' => $randomNumber, 'valid_until' => $now->addMinutes(5)]
+     );
+    }
 
     /**
      * The attributes that should be hidden for serialization.
@@ -66,7 +88,9 @@ class User extends Authenticatable implements JWTSubject
     public function listMovies(){
         return $this->belongsToMany(movies::class, 'reviews', 'user_id', 'movie_id');
     }
-    
+    public function otpdata(){
+        return $this->hasOne(otpCode::class, 'user_id');
+    }    
   
    
 }

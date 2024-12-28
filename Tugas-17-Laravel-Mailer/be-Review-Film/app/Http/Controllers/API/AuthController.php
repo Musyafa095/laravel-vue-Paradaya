@@ -7,8 +7,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Models\roles;
+use App\Models\otpCode;
 use Tymon\JWTAuth\Facades\JWTAuth;
-
+use Illuminate\Support\Facades\Mail;
+use App\Mail\UserRegisterMail;
+use App\Mail\GenerateEmailMail;
+use Carbon\Carbon;
 
 class AuthController extends Controller
 {
@@ -34,9 +38,10 @@ class AuthController extends Controller
         $user->password = Hash::make($request->input('password'));
         $user->role_id = $roleUser->id;
         $user->save();
+        Mail::to($user->email)->send(new UserRegisterMail($user));
         
-        return response()->json([   
-            'message' => 'register berhasil',
+        return response()->json([ 
+            'message' => 'User berhasil register, silahkan cek email anda',
             'user' => $user,
         ], 200);
     }
@@ -82,6 +87,55 @@ public function logout(){
         'message' => 'logout berhasil'
     ]);
 }
+public function generateOtp(Request $request)
+{
+  $request->validate([
+    'email' => 'required|email',
+  ],[
+    'required' => 'inputan :attribute wajib diisi',
+    'email' => 'inputan :attribute harus berformat email'
+  ]);
+  $user = User::where('email', $request->input('email'))->first();
+  $user->generate_otp();
+
+  Mail::to($user->email)->send(new GenerateEmailMail($user));
+  return response()->json([
+    'message' => 'OTP berhasil di generate, silahkan cek email anda'
+  ]);
+}
+public function verifikasi(Request $request)
+{
+$request->validate([
+    'otp' => 'required|min:6',
+],[
+    'required' => 'inputan :attribute wajib diisi',
+    'min' => 'inputan maksimal :min karakter '
+]);
+   $user = auth()->user();
+   //if OTP note found
+   $otp_code = otpCode::where('otp', $request->input('otp'))->where('user_id', $user->id)->first();
+   if (!$otp_code){
+    return response()->json([
+        'message' => 'OTP anda tidak ditemukan'
+    ], 404);
+   }
+    //if OTP expired
+    $now = Carbon::now();
+    if ($now > $otp_code->valid_until){
+        return response()->json([
+            'message' => 'OTP anda sudah kadaluarsa, silahkan generate ulang OTP anda'
+        ], 400);
+    }
+    //update user
+    $user =User::find($otp_code->user_id);
+    $user->email_verified_at = $now;
+    $user->save();
+    $otp_code->delete();
+    return response()->json([
+      'message' => 'Verifikasi anda berhasil'
+    ]);
+}
+   
 
 
 }

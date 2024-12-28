@@ -23,7 +23,7 @@ use App\Http\Controllers\API\CastMovieController;
 |
 */
 
-// CRUD-ORM-API
+// middleware $ auth:api (Admin) kecuali : All, Detail(Public)
 Route::prefix('v1')->group(function() {
     Route::apiResource('/cast', CastController::class);
     Route::apiResource('/genre', GenreController::class);
@@ -40,8 +40,10 @@ Route::prefix('v1')->group(function() {
         Route::post('/login', [AuthController::class, 'login']);
         Route::get('/me', [AuthController::class, 'currentuser'])->middleware('auth:api');
         Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:api');
+        Route::post('/account_verification', [AuthController::class, 'verifikasi'])->middleware('auth:api');
+        Route::post('/generate_otp_code', [AuthController::class, 'generateOtp'])->middleware('auth:api');
         })->middleware('api');
-        //Profile
-        Route::post('/profile', [ProfileController::class, 'storeupdate'])->middleware('auth:api');
-        Route::post('/review', [ReviewController::class, 'storeupdate'])->middleware('auth:api');
+        //middleware Profile & Review
+        Route::post('/profile', [ProfileController::class, 'storeupdate'])->middleware(['auth:api', 'verifiedAccount']);
+        Route::post('/review', [ReviewController::class, 'storeupdate'])->middleware(['auth:api', 'verifiedAccount']);
     });
