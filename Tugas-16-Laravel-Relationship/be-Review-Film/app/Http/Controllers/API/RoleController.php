@@ -35,7 +35,7 @@ public function store(Request $request){
 
 }
 public function show ($id){
-    $role = roles::find($id);
+    $role = roles::with('user')->find($id);
     return response()->json([
         'message' => 'detail data role', 'data' => $role
     ], 200);

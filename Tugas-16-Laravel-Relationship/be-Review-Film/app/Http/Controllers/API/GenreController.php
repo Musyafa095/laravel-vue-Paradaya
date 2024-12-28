@@ -40,7 +40,7 @@ class GenreController extends Controller
 
     {
        
-        $genre = genres::findOrFail($id);
+        $genre = genres::with('movies')->find($id);
         
         return response()->json([
             'message' => 'Detail untuk data Genre',

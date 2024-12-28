@@ -21,4 +21,8 @@ protected $table = 'roles';
             $model->id = (string) Str::uuid();
         });
     }
+    public function user()
+    {
+        return $this->hasMany(User::class, 'role_id');
+    }
 }

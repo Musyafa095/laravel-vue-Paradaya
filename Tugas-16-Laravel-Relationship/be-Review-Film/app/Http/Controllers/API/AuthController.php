@@ -59,7 +59,7 @@ class AuthController extends Controller
             $query->select('user_id', 'age', 'bio');
         }, 'roles' => function($query) {
             $query->select('id', 'name'); 
-        }])->first();
+        },'listMovies' => function($query) { $query->select('critic', 'rating', 'user_id', 'movie_id'); }])->first();
               return response()->json ([
                 'message' => 'User berhasil register',
                 'user' => $user,
@@ -70,9 +70,9 @@ class AuthController extends Controller
 }
 public function currentuser(){
     $user = auth()->user();
-    
+    $userData = User::with('listMovies')->find($user->id);
 return response()->json([
-    'user' => $user
+    'user' => $userData
 ]);
 }
 public function logout(){

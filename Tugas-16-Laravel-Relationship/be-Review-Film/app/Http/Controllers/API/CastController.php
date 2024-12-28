@@ -44,7 +44,7 @@ class CastController extends Controller
 
         public function show($id)
         {
-            $cast = casts::find($id);
+            $cast = casts::with('listCastMovie')->find($id);
             return response()->json([
                 'message' => 'Detail untuk data Cast',
                 'data' => $cast

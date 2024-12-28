@@ -14,6 +14,7 @@ class MovieController extends Controller
     {
         $this->middleware(['auth:api', 'admin'])->except(['index', 'show']);
     }
+
    public function index ()
 {
     $movies = movies::all();
@@ -54,7 +55,7 @@ public function show($id)
 
 {
    
-    $movie = movies::find($id);
+    $movie = movies::with(['genre', 'reviews', 'castMovies'])->find($id);
     if (!$movie) {
         return response()->json([
             'message' => 'Data film tidak ditemukan',
