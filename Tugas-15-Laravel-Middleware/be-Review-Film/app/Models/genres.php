@@ -11,8 +11,9 @@ class genres extends Model
     use HasFactory, HasUuids;
     protected $table =  'genres';
     protected $fillable =  ['name'];
-    protected $keyType =  'string';
-    public $incrementing =  false;
+    public $incrementing = false;
+    public $timestamps = false;
+  
   
 
     protected static function boot()
@@ -21,5 +22,9 @@ class genres extends Model
         self::creating(function ($model) {
             $model->id = (string) Str::uuid();
         });
+    }
+   public function movies()
+    {
+        return $this->hasMany(movies::class, 'genre_id');
     }
 }

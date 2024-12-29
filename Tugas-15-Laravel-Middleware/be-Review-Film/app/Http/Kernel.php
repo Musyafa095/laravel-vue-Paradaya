@@ -3,6 +3,9 @@
 namespace App\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
+use Tymon\JWTAuth\Middleware\GetUserFromToken;
+
+
 
 class Kernel extends HttpKernel
 {
@@ -65,6 +68,7 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'auth:api' => \Tymon\JWTAuth\Middleware\GetUserFromToken::class,
-        'admin' => \App\Http\Middleware\RoleAdmin::class
+        'admin' => \App\Http\Middleware\RoleAdmin::class,
+        'verifiedAccount' => \App\Http\Middleware\RoleVerified::class 
     ];
 }

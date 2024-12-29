@@ -8,9 +8,12 @@ use App\Http\Controllers\Controller;
 
 class GenreController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['auth:api', 'admin'])->except(['index', 'show']);
+    }
    public function index()
     {
-       
         $genres = genres::all();
         return response()->json([
             'message' => 'menampilkan data berhasil ',
@@ -37,7 +40,7 @@ class GenreController extends Controller
 
     {
        
-        $genre = genres::findOrFail($id);
+        $genre = genres::with('movies')->find($id);
         
         return response()->json([
             'message' => 'Detail untuk data Genre',

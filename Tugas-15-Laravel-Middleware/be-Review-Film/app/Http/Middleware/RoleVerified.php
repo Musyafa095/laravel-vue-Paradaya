@@ -5,10 +5,9 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
-use App\Models\roles;
+use App\Models\Role;
 
-
-class RoleAdmin
+class RoleVerified
 {
     /**
      * Handle an incoming request.
@@ -17,15 +16,14 @@ class RoleAdmin
      */
     public function handle(Request $request, Closure $next): Response
     {
-         $user = auth()->user();
-         $roleAdmin = Roles::where('name', 'admin')->first();
+        $user = auth()->user();
     
-         if ($user->role_id != $roleAdmin->id) {
+         if (!$user->email_verified_at) {
             return response()->json([
-                'message' => 'User tidak memiliki akses halaman ini, yang bisa mengakses hanya role admin'
+                'message' => 'User belum terverifikasi, silahkan verifikasi terlebih dahulu'
             ], 403); // 403 Forbidden
         }
-        
+
         return $next($request);
     }
 }

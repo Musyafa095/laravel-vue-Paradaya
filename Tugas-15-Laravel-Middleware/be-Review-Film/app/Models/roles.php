@@ -11,9 +11,8 @@ use Illuminate\Support\Str;
 class roles extends Model
 {
     use HasFactory, HasUuids;
-
+protected $table = 'roles';
     protected $fillable = ['name'];
-    public $incrementing = false;
 
     protected static function boot()
     {
@@ -21,5 +20,9 @@ class roles extends Model
         static::creating(function ($model) {
             $model->id = (string) Str::uuid();
         });
+    }
+    public function user()
+    {
+        return $this->hasMany(User::class, 'role_id');
     }
 }

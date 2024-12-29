@@ -7,13 +7,17 @@ use App\Http\Controllers\Controller;
 use App\Models\casts;
 class CastController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['auth:api', 'admin'])->except(['index', 'show']);
+    }
       
     public function index()
         {
             $casts = casts::all();
 
             return response()->json([
-                'message => Berhasil menampilkan data Cast',
+                'message' => 'Berhasil menampilkan data Cast',
                 'data' => $casts
             ]);
         }
@@ -40,7 +44,7 @@ class CastController extends Controller
 
         public function show($id)
         {
-            $cast = casts::find($id);
+            $cast = casts::with('listCastMovie')->find($id);
             return response()->json([
                 'message' => 'Detail untuk data Cast',
                 'data' => $cast

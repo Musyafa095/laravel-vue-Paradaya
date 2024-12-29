@@ -12,9 +12,6 @@ class casts extends Model
     use HasFactory, HasUuids;
     protected $table =  'casts';
     protected $fillable =  ['name', 'bio', 'age'];
-    protected $keyType =  'string';
-    public $incrementing =  false;
-   
    
 
 
@@ -25,4 +22,10 @@ class casts extends Model
           $model->id = (string) Str::uuid();
         });
     }
+public function listCastMovie()
+{
+    return $this->belongsToMany(movies::class, 'cast_movies', 'cast_id', 'movie_id');
+}
+    
+    
 }
