@@ -1,0 +1,19 @@
+[
+  {
+    "name": "Musyafa",
+    "password": "12345",
+    "role": "admin",
+    "isLogin": true
+  },
+  {
+    "name": "Iqbal",
+    "password": "12345",
+    "role": "trainer",
+    "isLogin": false,
+    "students": [
+      {
+        "name": "Regy"
+      }
+    ]
+  }
+]
